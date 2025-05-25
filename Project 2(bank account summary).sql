@@ -1,0 +1,4 @@
+CREATE TABLE Bank_account(AccountNumber INT,AccountHolderName VARCHAR (50),TransactionDate date, TransactionType VARCHAR (50), TransactionAmount DECIMAL (10,2))
+SELECT * FROM Bank_Account 
+INSERT INTO Bank_account(AccountNumber,AccountHolderName,TransactionDate,TransactionType,TransactionAmount) VALUES (1001,'Ravi Sharma','2023-07-05','withdrawal',1000.00),(1001,'Ravi Sharma','2023-07-10','deposit',2000.00),(1002,'Priya Gupta','2023-07-02','deposit',3000.00),(1002,'Priya Gupta','2023-07-08','withdrawal',500.00),(1003,'Vikram Patel','2023-07-04','deposit',10000.00),(1003,'Vikram Patel','2023-07-09','withdrawal',2000.00)
+SELECT AccountNumber,AccountHolderName,(sum(CASE WHEN transactiontype='deposit' THEN transactionamount ELSE 0 END )-sum(CASE WHEN transactiontype='withdrawal' THEN transactionamount ELSE 0 END ))AS total_balance FROM Bank_account GROUP BY AccountNumber,AccountHolderName ORDER BY AccountNumber
